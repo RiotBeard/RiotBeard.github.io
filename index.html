@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vacation Countdown</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         body, html {
             height: 100%;
             margin: 0;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Roboto', sans-serif;
         }
         .bg {
-            background-image: url('IMG_0067.JPEG');
+            background-color: #1a1a1a;  /* Fallback color */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('IMG_0067.JPEG');
             height: 100%;
             background-position: center;
             background-repeat: no-repeat;
@@ -21,7 +24,7 @@
             justify-content: center;
         }
         .countdown-container {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.3);
             padding: 20px;
             border-radius: 10px;
             text-align: center;
@@ -30,14 +33,16 @@
         h1, h2 {
             color: #ffffff;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-family: 'Poppins', sans-serif;
         }
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            margin-bottom: 5px;
         }
         h2 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-top: 0;
+            margin-bottom: 20px;
         }
         #timer {
             font-size: 2.5rem;
@@ -49,8 +54,9 @@
             margin: 0 10px;
         }
         .time-value {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: bold;
+            animation: pulse 1s infinite;
         }
         .time-label {
             font-size: 1rem;
@@ -61,6 +67,19 @@
             h2 { font-size: 1.5rem; }
             #timer { font-size: 2rem; }
             .time-value { font-size: 2.5rem; }
+        }
+        @media (min-width: 768px) {
+            .countdown-container {
+                max-width: 600px;
+            }
+            h1 { font-size: 3.5rem; }
+            h2 { font-size: 2rem; }
+            .time-value { font-size: 4rem; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
@@ -76,8 +95,7 @@
         // Set the date we're counting down to
         const countDownDate = new Date("Oct 24, 2024 01:05:00").getTime();
 
-        // Update the count down every 1 second
-        const x = setInterval(function() {
+        function updateCountdown() {
             const now = new Date().getTime();
             const distance = countDownDate - now;
 
@@ -86,17 +104,27 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+            function formatTimeUnit(value, unit) {
+                return `<div class="time-unit">
+                    <span class="time-value">${value}</span><br>
+                    <span class="time-label">${value === 1 ? unit.slice(0, -1) : unit}</span>
+                </div>`;
+            }
+
             document.getElementById("timer").innerHTML = 
-                `<div class="time-unit"><span class="time-value">${days}</span><br><span class="time-label">days</span></div>` +
-                `<div class="time-unit"><span class="time-value">${hours}</span><br><span class="time-label">hours</span></div>` +
-                `<div class="time-unit"><span class="time-value">${minutes}</span><br><span class="time-label">minutes</span></div>` +
-                `<div class="time-unit"><span class="time-value">${seconds}</span><br><span class="time-label">seconds</span></div>`;
+                formatTimeUnit(days, "days") +
+                formatTimeUnit(hours, "hours") +
+                formatTimeUnit(minutes, "minutes") +
+                formatTimeUnit(seconds, "seconds");
 
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("timer").innerHTML = "Your vacation has begun!";
+                document.getElementById("timer").innerHTML = "<h2>Your vacation has begun!</h2>";
             }
-        }, 1000);
+        }
+
+        updateCountdown();  // Call immediately to avoid initial delay
+        const x = setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
