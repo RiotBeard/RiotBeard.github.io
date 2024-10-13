@@ -11,7 +11,7 @@
             font-family: 'Arial', sans-serif;
         }
         .bg {
-            background-image: url('IMG_0067.JPEG');
+            background-image: url('https://imagedelivery.net/yHYXGmbPQLQ0Xz4Z-l7qiQ/0519c62c-f8db-4bbd-7186-2ba4e9d88b00/public');
             height: 100%;
             background-position: center;
             background-repeat: no-repeat;
@@ -21,43 +21,60 @@
             justify-content: center;
         }
         .countdown-container {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.5);
             padding: 20px;
             border-radius: 10px;
             text-align: center;
+            max-width: 80%;
+        }
+        h1, h2 {
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         h1 {
-            color: #ffffff;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 0;
         }
         #timer {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         .time-unit {
             display: inline-block;
             margin: 0 10px;
         }
         .time-value {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: bold;
         }
         .time-label {
             font-size: 1rem;
             text-transform: uppercase;
         }
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            #timer { font-size: 2rem; }
+            .time-value { font-size: 2.5rem; }
+        }
     </style>
 </head>
 <body>
     <div class="bg">
         <div class="countdown-container">
-            <h1>Time Until Your Vacation!</h1>
+            <h1>Time Until Paradise!</h1>
+            <h2>Flight leaves in...</h2>
             <div id="timer"></div>
         </div>
     </div>
     <script>
         // Set the date we're counting down to
-        const countDownDate = new Date("Oct 24, 2024 01:05:00").getTime();
+        const countDownDate = new Date("Jan 1, 2025 00:00:00").getTime();
 
         // Update the count down every 1 second
         const x = setInterval(function() {
