@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacation Countdown</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        .bg {
+            background-image: url('IMG_0067.JPEG');
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .countdown-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        h1 {
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        #timer {
+            font-size: 3rem;
+            color: #ffffff;
+        }
+        .time-unit {
+            display: inline-block;
+            margin: 0 10px;
+        }
+        .time-value {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+        .time-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg">
+        <div class="countdown-container">
+            <h1>Time Until Your Vacation!</h1>
+            <div id="timer"></div>
+        </div>
+    </div>
+    <script>
+        // Set the date we're counting down to
+        const countDownDate = new Date("Oct 24, 2024 01:05:00").getTime();
+
+        // Update the count down every 1 second
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer").innerHTML = 
+                `<div class="time-unit"><span class="time-value">${days}</span><br><span class="time-label">days</span></div>` +
+                `<div class="time-unit"><span class="time-value">${hours}</span><br><span class="time-label">hours</span></div>` +
+                `<div class="time-unit"><span class="time-value">${minutes}</span><br><span class="time-label">minutes</span></div>` +
+                `<div class="time-unit"><span class="time-value">${seconds}</span><br><span class="time-label">seconds</span></div>`;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "Your vacation has begun!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
