@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vacation Countdown</title>
+    <title>เนื่อนเวลาทั้งสองกัน</title>
     <style>
         body, html {
             height: 100%;
             margin: 0;
-            font-family: 'Arial', 'Helvetica', sans-serif;
+            font-family: 'Prompt', sans-serif;
         }
         .bg {
             background-image: url('IMG_0067-small.webp');
@@ -21,7 +21,7 @@
             justify-content: center;
         }
         .countdown-container {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(255, 255, 255, 0.7);
             padding: 20px;
             border-radius: 10px;
             text-align: center;
@@ -29,8 +29,8 @@
             animation: fadeIn 2s ease-in-out;
         }
         h1, h2 {
-            color: #ffffff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #2c3e50;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
         h1 {
             font-size: 2.5rem;
@@ -42,8 +42,8 @@
         }
         #timer {
             font-size: 2.5rem;
-            color: #ffffff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #2c3e50;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
         .time-unit {
             display: inline-block;
@@ -72,8 +72,8 @@
 <body>
     <div class="bg">
         <div class="countdown-container">
-            <h1>Time Until We're Together Again</h1>
-            <h1>อีกไม่นานเราก็จะได้อยู่ด้วยกันอีกครั้ง</h1>
+            <h1>เวลาทั้งสองกันที่เราารวมกัน</h1>
+            <h2>กำลังนับแล้วนับ...</h2>
             <div id="timer"></div>
         </div>
     </div>
@@ -92,14 +92,14 @@
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             document.getElementById("timer").innerHTML = 
-                `<div class="time-unit"><span class="time-value">${days}</span><br><span class="time-label">days</span></div>` +
-                `<div class="time-unit"><span class="time-value">${hours}</span><br><span class="time-label">hours</span></div>` +
-                `<div class="time-unit"><span class="time-value">${minutes}</span><br><span class="time-label">minutes</span></div>` +
-                `<div class="time-unit"><span class="time-value">${seconds}</span><br><span class="time-label">seconds</span></div>`;
+                `<div class="time-unit"><span class="time-value">${days}</span><br><span class="time-label">วัน</span></div>` +
+                `<div class="time-unit"><span class="time-value">${hours}</span><br><span class="time-label">ชั่วโมง</span></div>` +
+                `<div class="time-unit"><span class="time-value">${minutes}</span><br><span class="time-label">นาที</span></div>` +
+                `<div class="time-unit"><span class="time-value">${seconds}</span><br><span class="time-label">วินาที</span></div>`;
 
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("timer").innerHTML = "We're finally together!";
+                document.getElementById("timer").innerHTML = "เราารวมกันแล้ว!";
                 confetti();
             }
         }, 1000);
