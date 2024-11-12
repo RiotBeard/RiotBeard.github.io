@@ -72,14 +72,14 @@
 <body>
     <div class="bg">
         <div class="countdown-container">
-            <h1>Time Until Paradise!</h1>
-            <h2>Flight leaves in...</h2>
+            <h1>Time Until We're Together Again</h1>
+            <h2>Counting down to our reunion...</h2>
             <div id="timer"></div>
         </div>
     </div>
     <script>
         // Set the date we're counting down to
-        const countDownDate = new Date("Dec 27, 2024 18:05:00").getTime();
+        const countDownDate = new Date("Dec 29, 2024 14:00:00").getTime();
 
         // Update the count down every 1 second
         const x = setInterval(function() {
@@ -99,7 +99,7 @@
 
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("timer").innerHTML = "Your vacation has begun!";
+                document.getElementById("timer").innerHTML = "We're finally together!";
                 confetti();
             }
         }, 1000);
